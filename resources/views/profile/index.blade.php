@@ -20,7 +20,7 @@
                     <label for="name" class="text-xs font-semibold text-slate-700 block">Nama Lengkap</label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                            <i data-lucide="user" class="w-4.5 h-4.5"></i>
+                            <i class="fas fa-user w-4.5 h-4.5"></i>
                         </span>
                         <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}" required
                                class="w-full pl-10 pr-4 py-2.5 bg-slate-50 focus:bg-white text-slate-800 text-sm rounded-xl border border-slate-200 focus:border-blue-500 focus:outline-none transition-all">
@@ -31,7 +31,7 @@
                     <label for="email" class="text-xs font-semibold text-slate-700 block">Alamat Email</label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                            <i data-lucide="mail" class="w-4.5 h-4.5"></i>
+                            <i class="fas fa-envelope w-4.5 h-4.5"></i>
                         </span>
                         <input type="email" name="email" id="email" value="{{ old('email', $user->email) }}" required
                                class="w-full pl-10 pr-4 py-2.5 bg-slate-50 focus:bg-white text-slate-800 text-sm rounded-xl border border-slate-200 focus:border-blue-500 focus:outline-none transition-all">
@@ -47,7 +47,7 @@
                     </div>
                     <button type="button" @click="changePwd = !changePwd" 
                             class="px-3.5 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-600 font-bold text-xs rounded-lg border border-blue-100 transition-all flex items-center gap-1">
-                        <i data-lucide="key" class="w-3.5 h-3.5"></i>
+                        <i class="fas fa-key w-3.5 h-3.5"></i>
                         <span x-text="changePwd ? 'Batal Ubah' : 'Atur Ulang Password'"></span>
                     </button>
                 </div>
@@ -60,16 +60,16 @@
                         <label for="current_password" class="text-xs font-semibold text-slate-700 block">Password Saat Ini</label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 z-10">
-                                <i data-lucide="lock-keyhole" class="w-4.5 h-4.5"></i>
+                                <i class="fas fa-lock w-4.5 h-4.5"></i>
                             </span>
                             <input :type="showP1 ? 'text' : 'password'" name="current_password" id="current_password" placeholder="Password lama" ::required="changePwd"
                                    class="w-full pl-10 pr-10 py-2.5 bg-slate-50 focus:bg-white text-slate-800 text-sm rounded-xl border border-slate-200 focus:border-blue-500 focus:outline-none transition-all">
                             <button type="button" @click="showP1 = !showP1" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 transition-colors z-10">
                                 <span x-show="!showP1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                                    <i class="fas fa-eye"></i>
                                 </span>
                                 <span x-show="showP1" x-cloak>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+                                    <i class="fas fa-eye-slash"></i>
                                 </span>
                             </button>
                         </div>
@@ -79,16 +79,16 @@
                         <label for="new_password" class="text-xs font-semibold text-slate-700 block">Password Baru</label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 z-10">
-                                <i data-lucide="shield-alert" class="w-4.5 h-4.5"></i>
+                                <i class="fas fa-shield-alt w-4.5 h-4.5"></i>
                             </span>
                             <input :type="showP2 ? 'text' : 'password'" name="new_password" id="new_password" placeholder="Min 6 karakter" ::required="changePwd"
                                    class="w-full pl-10 pr-10 py-2.5 bg-slate-50 focus:bg-white text-slate-800 text-sm rounded-xl border border-slate-200 focus:border-blue-500 focus:outline-none transition-all">
                             <button type="button" @click="showP2 = !showP2" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 transition-colors z-10">
                                 <span x-show="!showP2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                                    <i class="fas fa-eye"></i>
                                 </span>
                                 <span x-show="showP2" x-cloak>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+                                    <i class="fas fa-eye-slash"></i>
                                 </span>
                             </button>
                         </div>
@@ -98,16 +98,16 @@
                         <label for="new_password_confirmation" class="text-xs font-semibold text-slate-700 block">Konfirmasi Password Baru</label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 z-10">
-                                <i data-lucide="shield-check" class="w-4.5 h-4.5"></i>
+                                <i class="fas fa-shield-alt w-4.5 h-4.5"></i>
                             </span>
                             <input :type="showP3 ? 'text' : 'password'" name="new_password_confirmation" id="new_password_confirmation" placeholder="Ulangi password" ::required="changePwd"
                                    class="w-full pl-10 pr-10 py-2.5 bg-slate-50 focus:bg-white text-slate-800 text-sm rounded-xl border border-slate-200 focus:border-blue-500 focus:outline-none transition-all">
                             <button type="button" @click="showP3 = !showP3" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 transition-colors z-10">
                                 <span x-show="!showP3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                                    <i class="fas fa-eye"></i>
                                 </span>
                                 <span x-show="showP3" x-cloak>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+                                    <i class="fas fa-eye-slash"></i>
                                 </span>
                             </button>
                         </div>
@@ -117,7 +117,7 @@
 
             <div class="pt-6 border-t border-slate-100 flex justify-end">
                 <button type="submit" class="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-sm rounded-xl shadow-lg shadow-blue-500/10 hover:shadow-blue-500/25 transition-all flex items-center gap-1.5">
-                    <i data-lucide="check" class="w-4.5 h-4.5"></i>
+                    <i class="fas fa-check w-4.5 h-4.5"></i>
                     <span>Simpan Perubahan</span>
                 </button>
             </div>

@@ -32,14 +32,14 @@
             @endif
 
             <button type="submit" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition-all shadow-md shadow-blue-500/10 flex items-center justify-center gap-1.5 shrink-0">
-                <i data-lucide="filter" class="w-4 h-4"></i>
+                <i class="fas fa-filter w-4 h-4"></i>
                 <span>Terapkan</span>
             </button>
         </form>
 
         <div class="flex items-center gap-2 shrink-0">
             <button onclick="window.print()" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl border border-slate-200 transition-all flex items-center justify-center gap-1.5">
-                <i data-lucide="printer" class="w-4.5 h-4.5 text-blue-600"></i>
+                <i class="fas fa-print w-4.5 h-4.5 text-blue-600"></i>
                 <span>Cetak Laporan</span>
             </button>
         </div>
@@ -48,7 +48,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex items-center gap-5 hover:shadow-md transition-shadow">
             <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 shadow-inner print:bg-slate-100">
-                <i data-lucide="wallet" class="w-7 h-7"></i>
+                <i class="fas fa-wallet w-7 h-7"></i>
             </div>
             <div>
                 <p class="text-xs text-slate-500 font-semibold tracking-wider uppercase">Total Penjualan</p>
@@ -58,7 +58,7 @@
 
         <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex items-center gap-5 hover:shadow-md transition-shadow">
             <div class="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 shadow-inner print:bg-slate-100">
-                <i data-lucide="shopping-bag" class="w-7 h-7"></i>
+                <i class="fas fa-shopping-bag w-7 h-7"></i>
             </div>
             <div>
                 <p class="text-xs text-slate-500 font-semibold tracking-wider uppercase">Total Transaksi</p>
@@ -117,7 +117,7 @@
                             <tr>
                                 <td colspan="5" class="py-16 text-center text-slate-400">
                                     <div class="w-14 h-14 rounded-full bg-slate-50 flex items-center justify-center mx-auto text-slate-300 mb-3 border border-slate-100">
-                                        <i data-lucide="receipt" class="w-6 h-6"></i>
+                                        <i class="fas fa-receipt w-6 h-6"></i>
                                     </div>
                                     <p class="text-sm font-semibold">Tidak ada transaksi pada tanggal ini</p>
                                 </td>
@@ -147,7 +147,7 @@
                             <tr>
                                 <td colspan="3" class="py-16 text-center text-slate-400">
                                     <div class="w-14 h-14 rounded-full bg-slate-50 flex items-center justify-center mx-auto text-slate-300 mb-3 border border-slate-100">
-                                        <i data-lucide="calendar" class="w-6 h-6"></i>
+                                        <i class="fas fa-calendar-alt w-6 h-6"></i>
                                     </div>
                                     <p class="text-sm font-semibold">Tidak ada data transaksi pada bulan ini</p>
                                 </td>

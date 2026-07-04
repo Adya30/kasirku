@@ -19,7 +19,7 @@
             <form action="{{ route('products.index') }}" method="GET" class="flex gap-2">
                 <div class="relative flex-1">
                     <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                        <i data-lucide="search" class="w-4 h-4"></i>
+                        <i class="fas fa-search w-4 h-4"></i>
                     </span>
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama, barcode, atau kategori..."
                            class="w-full pl-9 pr-4 py-2.5 bg-slate-50 text-slate-800 text-sm rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none transition-all">
@@ -37,12 +37,12 @@
 
         <div class="flex items-center gap-3">
             <button @click="scannerModalOpen = true" class="flex items-center gap-2 px-4.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm rounded-xl border border-slate-200 transition-all">
-                <i data-lucide="barcode" class="w-4.5 h-4.5 text-blue-600"></i>
+                <i class="fas fa-barcode w-4.5 h-4.5 text-blue-600"></i>
                 <span>Hubungkan Barcode</span>
             </button>
 
             <button @click="addModalOpen = true" class="flex items-center gap-2 px-4.5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-sm rounded-xl shadow-lg shadow-blue-500/10 transition-all">
-                <i data-lucide="plus" class="w-4.5 h-4.5"></i>
+                <i class="fas fa-plus w-4.5 h-4.5"></i>
                 <span>Tambah Produk</span>
             </button>
         </div>
@@ -93,14 +93,14 @@
                                         stock: '{{ $product->stock }}',
                                         price: '{{ $product->price }}'
                                     })" class="p-2 text-slate-400 hover:text-blue-600 bg-slate-50 hover:bg-blue-50 rounded-xl transition-colors">
-                                        <i data-lucide="edit" class="w-4 h-4"></i>
+                                        <i class="fas fa-edit w-4 h-4"></i>
                                     </button>
 
                                     <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="p-2 text-slate-400 hover:text-red-600 bg-slate-50 hover:bg-red-50 rounded-xl transition-colors">
-                                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                            <i class="fas fa-trash-alt w-4 h-4"></i>
                                         </button>
                                     </form>
                                 </div>
@@ -110,7 +110,7 @@
                         <tr>
                             <td colspan="6" class="py-12 text-center text-slate-400">
                                 <div class="w-16 h-16 rounded-full bg-slate-50 flex items-center justify-center mx-auto text-slate-300 mb-3 border border-slate-100">
-                                    <i data-lucide="package-open" class="w-8 h-8"></i>
+                                    <i class="fas fa-box-open w-8 h-8"></i>
                                 </div>
                                 <p class="text-sm font-semibold">Tidak ada produk ditemukan</p>
                                 <p class="text-xs mt-1">Silakan tambahkan produk baru.</p>
@@ -140,7 +140,7 @@
                 <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
                     <h3 class="text-base font-bold text-slate-800">Tambah Produk Baru</h3>
                     <button @click="addModalOpen = false" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition-colors">
-                        <i data-lucide="x" class="w-5 h-5"></i>
+                        <i class="fas fa-times w-5 h-5"></i>
                     </button>
                 </div>
 
@@ -202,7 +202,7 @@
                 <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
                     <h3 class="text-base font-bold text-slate-800">Edit Produk</h3>
                     <button @click="editModalOpen = false" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition-colors">
-                        <i data-lucide="x" class="w-5 h-5"></i>
+                        <i class="fas fa-times w-5 h-5"></i>
                     </button>
                 </div>
 
@@ -265,13 +265,13 @@
                 <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
                     <h3 class="text-base font-bold text-slate-800">Sambungkan / Hubungkan Barcode Scanner</h3>
                     <button @click="scannerModalOpen = false" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition-colors">
-                        <i data-lucide="x" class="w-5 h-5"></i>
+                        <i class="fas fa-times w-5 h-5"></i>
                     </button>
                 </div>
 
                 <div class="space-y-5" x-data="barcodeTester()">
                     <div class="bg-blue-50 border border-blue-100 p-4.5 rounded-2xl flex gap-3 text-blue-900 text-xs">
-                        <i data-lucide="info" class="w-5 h-5 text-blue-600 shrink-0 mt-0.5"></i>
+                        <i class="fas fa-info-circle w-5 h-5 text-blue-600 shrink-0 mt-0.5"></i>
                         <div class="space-y-1">
                             <h4 class="font-bold">Panduan Scanner Barcode Fisik:</h4>
                             <p class="leading-relaxed text-blue-800">
@@ -306,12 +306,12 @@
                         <div x-show="testScanResult" class="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between text-xs" x-cloak>
                             <div class="flex items-center gap-2">
                                 <div class="p-1 rounded bg-emerald-500 text-white flex items-center justify-center">
-                                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                    <i class="fas fa-check w-3.5 h-3.5"></i>
                                 </div>
                                 <span class="font-bold text-slate-800" x-text="testScanResult"></span>
                             </div>
                             <button type="button" @click="testScanValue = ''; testScanResult = ''" class="text-slate-400 hover:text-slate-600">
-                                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                                <i class="fas fa-undo w-4 h-4"></i>
                             </button>
                         </div>
                     </div>

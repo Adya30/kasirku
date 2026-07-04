@@ -12,7 +12,7 @@
     @if(session('status'))
         <div class="mb-4 p-4 bg-emerald-50 border border-emerald-100 text-emerald-800 text-xs font-medium rounded-xl flex flex-col gap-2">
             <div class="flex items-center gap-2">
-                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                <i class="fas fa-check-circle w-4 h-4 text-emerald-600 shrink-0"></i>
                 <span class="font-semibold">{{ session('status') }}</span>
             </div>
             
@@ -31,7 +31,7 @@
         <div class="mb-4 p-3 bg-red-50 border border-red-100 text-red-800 text-xs font-semibold rounded-xl flex flex-col gap-1">
             @foreach($errors->all() as $error)
                 <div class="flex items-center gap-2">
-                    <i data-lucide="alert-circle" class="w-4 h-4 text-red-600 shrink-0"></i>
+                    <i class="fas fa-exclamation-circle w-4 h-4 text-red-600 shrink-0"></i>
                     <span>{{ $error }}</span>
                 </div>
             @endforeach
@@ -45,7 +45,7 @@
             <label for="email" class="text-xs font-semibold text-slate-700 tracking-wide block">Email Terdaftar</label>
             <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                    <i data-lucide="mail" class="w-4 h-4"></i>
+                    <i class="fas fa-envelope w-4 h-4"></i>
                 </div>
                 <input type="email" name="email" id="email" required placeholder="nama@email.com"
                        class="w-full pl-10 pr-4 py-3 bg-slate-50 hover:bg-slate-100/50 focus:bg-white text-slate-800 text-sm rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none transition-all">
@@ -54,13 +54,13 @@
 
         <button type="submit" class="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-sm rounded-xl shadow-lg border border-blue-600/10 transition-all flex items-center justify-center gap-2">
             <span>Kirim Tautan Reset</span>
-            <i data-lucide="send" class="w-4.5 h-4.5"></i>
+            <i class="fas fa-paper-plane w-4.5 h-4.5"></i>
         </button>
     </form>
 
     <div class="mt-6 pt-4 border-t border-slate-100 text-center">
         <a href="{{ route('login') }}" class="text-xs font-bold text-slate-500 hover:text-blue-600 transition-colors inline-flex items-center gap-1">
-            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+            <i class="fas fa-chevron-left w-4 h-4"></i>
             <span>Kembali ke Login</span>
         </a>
     </div>

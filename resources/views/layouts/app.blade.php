@@ -41,7 +41,6 @@
     
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="h-dvh overflow-hidden text-slate-800 antialiased" x-data="{ sidebarOpen: false }">
     
@@ -88,11 +87,11 @@
                          'bg-emerald-50 text-emerald-600': toast.type === 'success',
                          'bg-red-50 text-red-600': toast.type === 'error'
                      }">
-                    <i :data-lucide="toast.type === 'success' ? 'check-circle' : 'alert-circle'" class="w-5 h-5"></i>
+                    <i :class="'fas ' + (toast.type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle') + ' w-5 h-5'"></i>
                 </div>
                 <div class="flex-1 text-sm font-medium" x-text="toast.message"></div>
                 <button @click="removeToast(toast.id)" class="text-slate-400 hover:text-slate-600 transition-colors">
-                    <i data-lucide="x" class="w-4 h-4"></i>
+                    <i class="fas fa-times w-4 h-4"></i>
                 </button>
             </div>
         </template>
@@ -115,23 +114,23 @@
 
             <nav class="flex-1 px-4 py-6 space-y-1.5 z-10">
                 <a href="{{ route('dashboard') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 {{ request()->routeIs('dashboard') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10 hover:text-white' }}">
-                    <i data-lucide="layout-dashboard" class="w-5 h-5 {{ request()->routeIs('dashboard') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
+                    <i class="fas fa-th-large w-5 h-5 {{ request()->routeIs('dashboard') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
                     <span>Dashboard</span>
                 </a>
                 <a href="{{ route('cashier.index') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 {{ request()->routeIs('cashier.index') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10 hover:text-white' }}">
-                    <i data-lucide="shopping-cart" class="w-5 h-5 {{ request()->routeIs('cashier.index') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
+                    <i class="fas fa-shopping-cart w-5 h-5 {{ request()->routeIs('cashier.index') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
                     <span>Kasir POS</span>
                 </a>
                 <a href="{{ route('products.index') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 {{ request()->routeIs('products.index') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10 hover:text-white' }}">
-                    <i data-lucide="package" class="w-5 h-5 {{ request()->routeIs('products.index') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
+                    <i class="fas fa-box w-5 h-5 {{ request()->routeIs('products.index') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
                     <span>Produk</span>
                 </a>
                 <a href="{{ route('reports.index') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 {{ request()->routeIs('reports.index') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10 hover:text-white' }}">
-                    <i data-lucide="trending-up" class="w-5 h-5 {{ request()->routeIs('reports.index') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
+                    <i class="fas fa-chart-line w-5 h-5 {{ request()->routeIs('reports.index') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
                     <span>Laporan</span>
                 </a>
                 <a href="{{ route('profile.index') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 {{ request()->routeIs('profile.index') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10 hover:text-white' }}">
-                    <i data-lucide="user" class="w-5 h-5 {{ request()->routeIs('profile.index') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
+                    <i class="fas fa-user w-5 h-5 {{ request()->routeIs('profile.index') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
                     <span>Profil</span>
                 </a>
             </nav>
@@ -149,7 +148,7 @@
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="w-full flex items-center justify-center gap-2 py-2 px-3 bg-white/10 hover:bg-red-500/20 hover:text-red-200 border border-white/10 hover:border-red-500/30 rounded-xl text-xs font-semibold text-blue-100 transition-all">
-                        <i data-lucide="log-out" class="w-4 h-4"></i>
+                        <i class="fas fa-sign-out-alt w-4 h-4"></i>
                         <span>Keluar</span>
                     </button>
                 </form>
@@ -162,8 +161,8 @@
                 <span class="text-base font-extrabold tracking-wider">KASIRKU</span>
             </div>
             <button @click="sidebarOpen = !sidebarOpen" class="p-2 rounded-lg bg-white/15 focus:outline-none">
-                <i data-lucide="menu" class="w-6 h-6" x-show="!sidebarOpen"></i>
-                <i data-lucide="x" class="w-6 h-6" x-show="sidebarOpen" x-cloak></i>
+                <i class="fas fa-bars w-6 h-6" x-show="!sidebarOpen"></i>
+                <i class="fas fa-times w-6 h-6" x-show="sidebarOpen" x-cloak></i>
             </button>
         </div>
 
@@ -185,23 +184,23 @@
 
                 <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
                     <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('dashboard') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10' }}">
-                        <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                        <i class="fas fa-th-large w-5 h-5"></i>
                         <span>Dashboard</span>
                     </a>
                     <a href="{{ route('cashier.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('cashier.index') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10' }}">
-                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                        <i class="fas fa-shopping-cart w-5 h-5"></i>
                         <span>Kasir POS</span>
                     </a>
                     <a href="{{ route('products.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('products.index') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10' }}">
-                        <i data-lucide="package" class="w-5 h-5"></i>
+                        <i class="fas fa-box w-5 h-5"></i>
                         <span>Produk</span>
                     </a>
                     <a href="{{ route('reports.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('reports.index') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10' }}">
-                        <i data-lucide="trending-up" class="w-5 h-5"></i>
+                        <i class="fas fa-chart-line w-5 h-5"></i>
                         <span>Laporan</span>
                     </a>
                     <a href="{{ route('profile.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('profile.index') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10' }}">
-                        <i data-lucide="user" class="w-5 h-5"></i>
+                        <i class="fas fa-user w-5 h-5"></i>
                         <span>Profil</span>
                     </a>
                 </nav>
@@ -219,7 +218,7 @@
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="w-full flex items-center justify-center gap-2 py-2 px-3 bg-white/10 hover:bg-red-500/20 hover:text-red-200 border border-white/10 hover:border-red-500/30 rounded-xl text-xs font-semibold text-blue-100 transition-all">
-                            <i data-lucide="log-out" class="w-4 h-4"></i>
+                            <i class="fas fa-sign-out-alt w-4 h-4"></i>
                             <span>Keluar</span>
                         </button>
                     </form>
@@ -234,7 +233,7 @@
                 </div>
                 <div class="flex items-center gap-4">
                     <a href="{{ route('cashier.index') }}" class="flex items-center gap-2 bg-blue-50 text-blue-600 hover:bg-blue-100 border border-blue-100 hover:border-blue-200 py-1.5 px-3.5 rounded-xl text-xs font-semibold shadow-inner transition-all duration-200">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                        <i class="fas fa-shopping-cart w-4 h-4"></i>
                         <span>Kasir POS</span>
                     </a>
                     
@@ -255,12 +254,6 @@
         </main>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-        });
-    </script>
-    
     @yield('scripts')
 </body>
 </html>

@@ -24,7 +24,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="h-dvh overflow-hidden flex items-center justify-center p-4 antialiased relative bg-gradient-to-tr from-blue-600 via-blue-500 to-indigo-700">
     
@@ -40,10 +39,5 @@
         @yield('content')
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-        });
-    </script>
 </body>
 </html>

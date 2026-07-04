@@ -7,27 +7,85 @@
 <div class="grid grid-cols-1 xl:grid-cols-12 gap-6" x-data="posApp()">
     
     <div class="xl:col-span-7 space-y-6">
-        <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-4">
+        <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-5">
             <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                    <div class="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse"></div>
-                    <h3 class="text-sm font-bold text-slate-800">Deteksi Barcode Scanner Otomatis</h3>
-                </div>
-                <span class="text-[10px] bg-blue-50 text-blue-600 font-bold px-2 py-0.5 rounded-md">Scanner Siap</span>
+                <h3 class="text-sm font-bold text-slate-800">Koneksi Perangkat</h3>
             </div>
-            
-            <p class="text-xs text-slate-500 leading-relaxed">
-                Anda dapat langsung memindai barcode produk menggunakan alat scanner Anda kapan saja. Sistem akan mendeteksi scan secara otomatis.
-            </p>
 
-            <div class="pt-2 border-t border-slate-50">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-4 rounded-2xl border" :class="scannerConnected ? 'border-emerald-200 bg-emerald-50/30' : 'border-slate-200 bg-slate-50/50'">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-9 h-9 rounded-xl flex items-center justify-center" :class="scannerConnected ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-400'">
+                                <i class="fas fa-barcode w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-800">Barcode Scanner</p>
+                                <p class="text-[10px] text-slate-500" x-text="scannerConnected ? scannerDeviceName : 'Belum terhubung'"></p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-md" :class="scannerConnected ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-500'">
+                            <span x-text="scannerConnected ? 'Siap' : 'Belum Siap'"></span>
+                        </span>
+                    </div>
+                    <div class="space-y-2">
+                        <template x-if="!scannerConnected">
+                            <button type="button" @click="connectScanner()" :disabled="isConnecting"
+                                    class="w-full py-2 px-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-200 disabled:text-slate-500 text-white font-bold text-[11px] rounded-xl transition-all flex items-center justify-center gap-1.5">
+                                <i class="fas fa-plug w-3.5 h-3.5" x-show="!isConnecting"></i>
+                                <i class="fas fa-spinner w-3.5 h-3.5 animate-spin" x-show="isConnecting" x-cloak></i>
+                                <span x-text="isConnecting ? 'Menghubungkan...' : 'Hubungkan Scanner'"></span>
+                            </button>
+                        </template>
+                        <template x-if="scannerConnected">
+                            <button type="button" @click="disconnectScanner()"
+                                    class="w-full py-2 px-3 bg-red-50 hover:bg-red-100 text-red-600 font-bold text-[11px] rounded-xl transition-all flex items-center justify-center gap-1.5 border border-red-100">
+                                <i class="fas fa-unlink w-3.5 h-3.5"></i>
+                                <span>Putuskan Scanner</span>
+                            </button>
+                        </template>
+                        <p class="text-[10px] text-slate-400 leading-relaxed" x-show="!webHidSupported && !scannerConnected" x-cloak>
+                            Browser tidak mendukung WebHID. Gunakan input manual di bawah.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-2xl border" :class="printerDetected ? 'border-emerald-200 bg-emerald-50/30' : 'border-slate-200 bg-slate-50/50'">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-9 h-9 rounded-xl flex items-center justify-center" :class="printerDetected ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-400'">
+                                <i class="fas fa-print w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-800">Printer Nota</p>
+                                <p class="text-[10px] text-slate-500" x-text="printerDetected ? 'Printer tersedia' : 'Tidak terdeteksi'"></p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-md" :class="printerDetected ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-500'">
+                            <span x-text="printerDetected ? 'Siap' : 'Belum Siap'"></span>
+                        </span>
+                    </div>
+                    <div class="space-y-2">
+                        <button type="button" @click="testPrinter()"
+                                class="w-full py-2 px-3 bg-blue-50 hover:bg-blue-100 text-blue-600 font-bold text-[11px] rounded-xl transition-all flex items-center justify-center gap-1.5 border border-blue-100">
+                            <i class="fas fa-file-alt w-3.5 h-3.5"></i>
+                            <span>Uji Coba Cetak</span>
+                        </button>
+                        <p class="text-[10px] text-slate-400 leading-relaxed">
+                            Cetak nota menggunakan dialog print browser. Pastikan printer thermal terpilih.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-2 border-t border-slate-100">
                 <div class="space-y-1.5">
-                    <label class="text-xs font-semibold text-slate-700">Input Kode Barcode Manual (Jika alat tidak terbaca):</label>
+                    <label class="text-xs font-semibold text-slate-700">Input Kode Barcode Manual:</label>
                     <div class="relative max-w-md">
                         <input type="text" x-model="manualBarcode" @keydown.enter.prevent="lookupBarcode(manualBarcode)" placeholder="Ketik barcode produk dan tekan Enter..."
                                class="w-full pl-3 pr-10 py-2.5 bg-slate-50 text-xs rounded-xl border border-slate-200 focus:border-blue-500 focus:outline-none text-slate-800">
                         <button @click="lookupBarcode(manualBarcode)" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-blue-600 hover:text-blue-700">
-                            <i data-lucide="corner-down-left" class="w-4 h-4"></i>
+                            <i class="fas fa-reply w-4 h-4"></i>
                         </button>
                     </div>
                 </div>
@@ -42,7 +100,7 @@
                 </div>
                 <button @click="clearCart()" :disabled="cart.length === 0"
                         class="text-xs font-bold text-red-500 hover:text-red-700 disabled:text-slate-300 transition-colors flex items-center gap-1">
-                    <i data-lucide="trash" class="w-4 h-4"></i>
+                    <i class="fas fa-trash w-4 h-4"></i>
                     <span>Kosongkan</span>
                 </button>
             </div>
@@ -76,7 +134,7 @@
                                 <td class="py-3 px-6 text-right font-bold text-slate-800 text-xs" x-text="formatPrice(item.price * item.qty)"></td>
                                 <td class="py-3 px-6 text-center">
                                     <button @click="removeFromCart(index)" class="text-slate-400 hover:text-red-500 transition-colors">
-                                        <i data-lucide="x" class="w-4.5 h-4.5"></i>
+                                        <i class="fas fa-times w-4.5 h-4.5"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -86,7 +144,7 @@
                             <tr>
                                 <td colspan="5" class="py-20 text-center text-slate-400">
                                     <div class="w-14 h-14 rounded-full bg-slate-50 flex items-center justify-center mx-auto text-slate-300 mb-3 border border-slate-100">
-                                        <i data-lucide="shopping-basket" class="w-7 h-7"></i>
+                                        <i class="fas fa-shopping-basket w-7 h-7"></i>
                                     </div>
                                     <p class="text-xs font-bold text-slate-500">Keranjang masih kosong</p>
                                     <p class="text-[10px] mt-0.5">Scan produk atau tambah secara manual di samping kanan</p>
@@ -105,7 +163,7 @@
             <div class="relative" x-data="{ showResults: false }">
                 <div class="relative">
                     <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                        <i data-lucide="search" class="w-4 h-4"></i>
+                        <i class="fas fa-search w-4 h-4"></i>
                     </span>
                     <input type="text" x-model="searchQuery" @input="showResults = true" @focus="showResults = true" @click.away="showResults = false"
                            placeholder="Ketik nama produk atau kode barcode..."
@@ -190,7 +248,7 @@
 
             <button @click="processCheckout()" :disabled="cart.length === 0 || amountChange < 0 || processing"
                     class="w-full py-3.5 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:from-slate-100 disabled:to-slate-100 disabled:text-slate-400 disabled:border-transparent text-white font-extrabold text-sm rounded-xl shadow-lg shadow-blue-500/10 hover:shadow-blue-500/25 transition-all flex items-center justify-center gap-2">
-                <i data-lucide="printer" class="w-4.5 h-4.5"></i>
+                <i class="fas fa-print w-4.5 h-4.5"></i>
                 <span x-text="processing ? 'Memproses Transaksi...' : 'Bayar & Cetak Nota'"></span>
             </button>
         </div>
@@ -206,7 +264,7 @@
                  x-transition:enter-end="opacity-100 scale-100 translate-y-0">
                 
                 <div class="w-14 h-14 rounded-full bg-emerald-500/15 text-emerald-500 flex items-center justify-center mx-auto mb-4 border border-emerald-500/20 shadow-inner">
-                    <i data-lucide="check-circle" class="w-7 h-7"></i>
+                    <i class="fas fa-check-circle w-7 h-7"></i>
                 </div>
                 
                 <h3 class="text-base font-bold text-slate-800">Transaksi Berhasil!</h3>
@@ -221,7 +279,7 @@
                     </button>
                     <button type="button" @click="printReceipt()"
                             class="py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-md shadow-blue-500/10 flex items-center justify-center gap-1.5 transition-all">
-                        <i data-lucide="printer" class="w-4 h-4"></i>
+                        <i class="fas fa-print w-4 h-4"></i>
                         <span>Cetak Ulang</span>
                     </button>
                 </div>
@@ -270,6 +328,14 @@
             quickCashOptions: [10000, 20000, 50000, 100000],
             productsList: @json($products),
 
+            scannerConnected: false,
+            scannerDevice: null,
+            scannerDeviceName: '',
+            isConnecting: false,
+            webHidSupported: !!navigator.hid,
+
+            printerDetected: false,
+
             get filteredProducts() {
                 if (!this.searchQuery) return [];
                 const q = this.searchQuery.toLowerCase();
@@ -308,30 +374,134 @@
             },
 
             init() {
-                let barcodeBuffer = '';
-                let lastKeyTime = Date.now();
+                this.checkWebHidSupport();
+                this.detectPrinter();
 
-                window.addEventListener('keydown', (e) => {
-                    if (e.target.tagName === 'INPUT' && e.target !== document.body) {
+                document.addEventListener('visibilitychange', () => {
+                    if (!document.hidden) {
+                        this.detectPrinter();
+                    }
+                });
+            },
+
+            checkWebHidSupport() {
+                this.webHidSupported = !!navigator.hid;
+                if (this.webHidSupported) {
+                    navigator.hid.addEventListener('disconnect', (event) => {
+                        if (this.scannerDevice && event.device.vendorId === this.scannerDevice.vendorId) {
+                            this.scannerConnected = false;
+                            this.scannerDevice = null;
+                            this.scannerDeviceName = '';
+                            window.dispatchEvent(new CustomEvent('toast', { 
+                                detail: { message: 'Scanner barcode terputus.', type: 'error' } 
+                            }));
+                        }
+                    });
+                }
+            },
+
+            async connectScanner() {
+                if (!navigator.hid) {
+                    window.dispatchEvent(new CustomEvent('toast', { 
+                        detail: { message: 'Browser tidak mendukung WebHID. Gunakan Chrome/Edge terbaru.', type: 'error' } 
+                    }));
+                    return;
+                }
+
+                this.isConnecting = true;
+
+                try {
+                    const devices = await navigator.hid.requestDevice({
+                        filters: [
+                            { usagePage: 0x0001 },
+                            { usagePage: 0x000C },
+                            { usagePage: 0xFF00 },
+                            { usagePage: 0xFF01 }
+                        ]
+                    });
+
+                    if (devices.length === 0) {
+                        this.isConnecting = false;
+                        window.dispatchEvent(new CustomEvent('toast', { 
+                            detail: { message: 'Tidak ada perangkat yang dipilih.', type: 'error' } 
+                        }));
                         return;
                     }
 
-                    const currentTime = Date.now();
+                    const device = devices[0];
                     
-                    if (currentTime - lastKeyTime < 35) {
-                        if (e.key === 'Enter') {
-                            if (barcodeBuffer.trim().length > 3) {
-                                this.lookupBarcode(barcodeBuffer.trim());
-                                barcodeBuffer = '';
+                    await device.open();
+
+                    this.scannerDevice = device;
+                    this.scannerDeviceName = device.productName || 'Scanner USB';
+                    this.scannerConnected = true;
+                    this.isConnecting = false;
+
+                    device.oninputreport = (event) => {
+                        const view = new DataView(event.data.buffer);
+                        let barcodeChars = '';
+                        for (let i = 0; i < event.data.byteLength; i++) {
+                            const byte = view.getUint8(i);
+                            if (byte > 0) {
+                                barcodeChars += String.fromCharCode(byte);
                             }
-                        } else if (e.key !== 'Shift') {
-                            barcodeBuffer += e.key;
                         }
-                    } else {
-                        barcodeBuffer = e.key === 'Shift' ? '' : e.key;
+
+                        const cleaned = barcodeChars.replace(/[^\x20-\x7E]/g, '').trim();
+                        if (cleaned.length > 2) {
+                            this.beep();
+                            this.lookupBarcode(cleaned);
+                        }
+                    };
+
+                    window.dispatchEvent(new CustomEvent('toast', { 
+                        detail: { message: `Scanner "${this.scannerDeviceName}" terhubung!`, type: 'success' } 
+                    }));
+
+                } catch (error) {
+                    this.isConnecting = false;
+                    if (error.name !== 'NotFoundError') {
+                        window.dispatchEvent(new CustomEvent('toast', { 
+                            detail: { message: 'Gagal menghubungkan scanner: ' + error.message, type: 'error' } 
+                        }));
                     }
-                    lastKeyTime = currentTime;
-                });
+                }
+            },
+
+            async disconnectScanner() {
+                if (this.scannerDevice) {
+                    try {
+                        await this.scannerDevice.close();
+                    } catch(e) {}
+                    this.scannerDevice = null;
+                    this.scannerConnected = false;
+                    this.scannerDeviceName = '';
+                    window.dispatchEvent(new CustomEvent('toast', { 
+                        detail: { message: 'Scanner barcode diputuskan.', type: 'success' } 
+                    }));
+                }
+            },
+
+            detectPrinter() {
+                this.printerDetected = typeof window.print !== 'undefined' && window.print !== null;
+            },
+
+            testPrinter() {
+                const testContent = `
+<div style="text-align:center;font-family:'Courier New',monospace;font-size:10pt;padding:10px;">
+    <h2 style="font-size:14pt;margin:0;">KASIRKU RETAIL</h2>
+    <p style="font-size:8pt;color:#666;margin:2px 0;">UJI CETAK PRINTER</p>
+    <hr style="border-top:1px dashed #000;">
+    <p style="font-size:9pt;">Tanggal: ${new Date().toLocaleString('id-ID')}</p>
+    <hr style="border-top:1px dashed #000;">
+    <p style="font-size:9pt;">Jika halaman ini tercetak,</p>
+    <p style="font-size:9pt;">printer nota Anda sudah siap!</p>
+    <hr style="border-top:1px dashed #000;">
+    <p style="font-size:9pt;font-weight:bold;">*** TEST OK ***</p>
+</div>`;
+                document.getElementById('print-area').innerHTML = testContent;
+                window.print();
+                document.getElementById('print-area').innerHTML = '';
             },
 
             lookupBarcode(barcode) {
@@ -423,7 +593,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        'X-CSRF-TOKEN': document.querySelector('meta[name=\"csrf-token\"]').getAttribute('content')
                     },
                     body: JSON.stringify({
                         cart: this.cart,

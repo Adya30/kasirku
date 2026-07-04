@@ -17,7 +17,7 @@
             </div>
             <div>
                 <a href="{{ route('cashier.index') }}" class="inline-flex items-center gap-2 px-5 py-3 bg-white text-blue-700 hover:bg-blue-50 font-bold text-xs md:text-sm rounded-2xl shadow-lg transition-all duration-200">
-                    <i data-lucide="shopping-cart" class="w-4.5 h-4.5"></i>
+                    <i class="fas fa-shopping-cart w-4.5 h-4.5"></i>
                     <span>Buka Kasir Baru</span>
                 </a>
             </div>
@@ -27,7 +27,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex items-center gap-5 hover:shadow-md transition-shadow">
             <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 shadow-inner">
-                <i data-lucide="banknote" class="w-7 h-7"></i>
+                <i class="fas fa-coins w-7 h-7"></i>
             </div>
             <div class="min-w-0">
                 <p class="text-xs text-slate-500 font-semibold tracking-wider uppercase">Penjualan Hari Ini</p>
@@ -37,7 +37,7 @@
 
         <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex items-center gap-5 hover:shadow-md transition-shadow">
             <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 shadow-inner">
-                <i data-lucide="shopping-bag" class="w-7 h-7"></i>
+                <i class="fas fa-shopping-bag w-7 h-7"></i>
             </div>
             <div class="min-w-0">
                 <p class="text-xs text-slate-500 font-semibold tracking-wider uppercase">Transaksi Hari Ini</p>
@@ -47,7 +47,7 @@
 
         <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex items-center gap-5 hover:shadow-md transition-shadow">
             <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 shadow-inner">
-                <i data-lucide="package" class="w-7 h-7"></i>
+                <i class="fas fa-box w-7 h-7"></i>
             </div>
             <div class="min-w-0">
                 <p class="text-xs text-slate-500 font-semibold tracking-wider uppercase">Total Produk</p>
@@ -57,7 +57,7 @@
 
         <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex items-center gap-5 hover:shadow-md transition-shadow">
             <div class="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 shadow-inner">
-                <i data-lucide="line-chart" class="w-7 h-7"></i>
+                <i class="fas fa-chart-line w-7 h-7"></i>
             </div>
             <div class="min-w-0">
                 <p class="text-xs text-slate-500 font-semibold tracking-wider uppercase">Pendapatan Bulan Ini</p>
@@ -91,7 +91,7 @@
                     <div class="flex items-center justify-between p-3 rounded-2xl border border-slate-50 hover:border-slate-100 hover:bg-slate-50/50 transition-colors">
                         <div class="flex items-center gap-3 min-w-0">
                             <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
-                                <i data-lucide="receipt" class="w-5 h-5"></i>
+                                <i class="fas fa-receipt w-5 h-5"></i>
                             </div>
                             <div class="min-w-0">
                                 <p class="text-xs font-bold text-slate-800 truncate">{{ $tx->invoice_number }}</p>
@@ -106,7 +106,7 @@
                 @empty
                     <div class="h-full flex flex-col items-center justify-center text-center py-10">
                         <div class="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 mb-2">
-                            <i data-lucide="inbox" class="w-6 h-6"></i>
+                            <i class="fas fa-inbox w-6 h-6"></i>
                         </div>
                         <p class="text-xs font-semibold text-slate-500">Belum ada transaksi hari ini</p>
                     </div>
@@ -116,7 +116,7 @@
             @if($recentTransactions->count() > 0)
                 <a href="{{ route('reports.index') }}" class="mt-4 text-center text-xs font-semibold text-blue-600 hover:text-blue-700 hover:underline flex items-center justify-center gap-1">
                     <span>Lihat Laporan Detail</span>
-                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    <i class="fas fa-chevron-right w-4 h-4"></i>
                 </a>
             @endif
         </div>

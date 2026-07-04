@@ -19,9 +19,6 @@ Kasirku adalah aplikasi web kasir Point of Sale (POS) yang responsif, modern, da
 * **Database**: SQLite (default) / MySQL
 * **Grafik**: Chart.js
 
-## Kredensial Login Default (Seeder)
-* **Email**: `admin@gmail.com`
-* **Password**: `password123`
 
 ## Cara Instalasi Lokal
 

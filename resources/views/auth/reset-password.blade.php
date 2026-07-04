@@ -28,7 +28,7 @@
         <div class="space-y-1.5">
             <label for="email" class="text-xs font-semibold text-slate-700 tracking-wide block">Email Konfirmasi</label>
             <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 z-10">
                     <i data-lucide="mail" class="w-4 h-4"></i>
                 </div>
                 <input type="email" name="email" id="email" value="{{ $email ?? old('email') }}" required readonly
@@ -39,14 +39,18 @@
         <div class="space-y-1.5">
             <label for="password" class="text-xs font-semibold text-slate-700 tracking-wide block">Password Baru</label>
             <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 z-10">
                     <i data-lucide="lock" class="w-4 h-4"></i>
                 </div>
                 <input :type="showPasswords ? 'text' : 'password'" name="password" id="password" required placeholder="Min 6 karakter"
                        class="w-full pl-10 pr-10 py-3 bg-slate-50 hover:bg-slate-100/50 focus:bg-white text-slate-800 text-sm rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none transition-all">
-                <button type="button" @click="showPasswords = !showPasswords" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4" x-show="!showPasswords"></i>
-                    <i data-lucide="eye-off" class="w-4 h-4" x-show="showPasswords" x-cloak></i>
+                <button type="button" @click="showPasswords = !showPasswords" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 transition-colors z-10">
+                    <span x-show="!showPasswords">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </span>
+                    <span x-show="showPasswords" x-cloak>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+                    </span>
                 </button>
             </div>
         </div>
@@ -54,14 +58,18 @@
         <div class="space-y-1.5">
             <label for="password_confirmation" class="text-xs font-semibold text-slate-700 tracking-wide block">Ulangi Password Baru</label>
             <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 z-10">
                     <i data-lucide="lock" class="w-4 h-4"></i>
                 </div>
                 <input :type="showPasswords ? 'text' : 'password'" name="password_confirmation" id="password_confirmation" required placeholder="Ulangi password"
                        class="w-full pl-10 pr-10 py-3 bg-slate-50 hover:bg-slate-100/50 focus:bg-white text-slate-800 text-sm rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none transition-all">
-                <button type="button" @click="showPasswords = !showPasswords" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4" x-show="!showPasswords"></i>
-                    <i data-lucide="eye-off" class="w-4 h-4" x-show="showPasswords" x-cloak></i>
+                <button type="button" @click="showPasswords = !showPasswords" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 transition-colors z-10">
+                    <span x-show="!showPasswords">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </span>
+                    <span x-show="showPasswords" x-cloak>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+                    </span>
                 </button>
             </div>
         </div>

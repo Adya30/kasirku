@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="h-dvh overflow-hidden bg-slate-50/50">
+<html lang="id" class="min-h-screen bg-slate-50/50">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +42,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="h-dvh overflow-hidden text-slate-800 antialiased" x-data="{ sidebarOpen: false }">
+<body class="min-h-screen text-slate-800 antialiased" x-data="{ sidebarOpen: false }">
     
     <div class="fixed top-5 right-5 z-50 flex flex-col gap-3 max-w-sm pointer-events-none" 
          x-data="{ 
@@ -99,59 +99,61 @@
 
     <div id="print-area" class="hidden"></div>
 
-    <div class="h-dvh w-screen overflow-hidden flex flex-col md:flex-row">
+    <div class="min-h-screen w-screen flex flex-col md:flex-row">
         <aside class="hidden md:flex flex-col w-64 bg-gradient-to-b from-blue-700 to-indigo-800 text-white shrink-0 border-r border-indigo-900 shadow-xl relative overflow-hidden">
             <div class="absolute -top-16 -right-16 w-32 h-32 rounded-full bg-white/5 blur-xl pointer-events-none"></div>
             <div class="absolute -bottom-16 -left-16 w-32 h-32 rounded-full bg-white/5 blur-xl pointer-events-none"></div>
             
-            <div class="h-16 px-6 flex items-center gap-3 border-b border-white/10 z-10">
-                <img src="{{ asset('image/icon.svg') }}" alt="Logo" class="w-8 h-8 object-contain bg-white p-1 rounded-lg shadow-sm">
-                <div>
-                    <h1 class="text-lg font-extrabold tracking-wider bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">KASIRKU</h1>
-                    <p class="text-[10px] text-blue-200 font-medium">Smart Retail Solution</p>
-                </div>
-            </div>
-
-            <nav class="flex-1 px-4 py-6 space-y-1.5 z-10">
-                <a href="{{ route('dashboard') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 {{ request()->routeIs('dashboard') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10 hover:text-white' }}">
-                    <i class="fas fa-th-large w-5 h-5 {{ request()->routeIs('dashboard') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="{{ route('cashier.index') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 {{ request()->routeIs('cashier.index') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10 hover:text-white' }}">
-                    <i class="fas fa-shopping-cart w-5 h-5 {{ request()->routeIs('cashier.index') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
-                    <span>Kasir POS</span>
-                </a>
-                <a href="{{ route('products.index') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 {{ request()->routeIs('products.index') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10 hover:text-white' }}">
-                    <i class="fas fa-box w-5 h-5 {{ request()->routeIs('products.index') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
-                    <span>Produk</span>
-                </a>
-                <a href="{{ route('reports.index') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 {{ request()->routeIs('reports.index') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10 hover:text-white' }}">
-                    <i class="fas fa-chart-line w-5 h-5 {{ request()->routeIs('reports.index') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
-                    <span>Laporan</span>
-                </a>
-                <a href="{{ route('profile.index') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 {{ request()->routeIs('profile.index') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10 hover:text-white' }}">
-                    <i class="fas fa-user w-5 h-5 {{ request()->routeIs('profile.index') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
-                    <span>Profil</span>
-                </a>
-            </nav>
-
-            <div class="p-4 border-t border-white/10 bg-indigo-950/20 z-10">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-700 font-bold shadow-inner">
-                        {{ strtoupper(substr(Auth::user()->name, 0, 2)) }}
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-semibold truncate">{{ Auth::user()->name }}</p>
-                        <p class="text-[11px] text-blue-200 truncate">{{ Auth::user()->email }}</p>
+            <div class="sticky top-0 h-screen flex flex-col justify-between w-full z-10">
+                <div class="h-16 px-6 flex items-center gap-3 border-b border-white/10 shrink-0">
+                    <img src="{{ asset('image/icon.svg') }}" alt="Logo" class="w-8 h-8 object-contain bg-white p-1 rounded-lg shadow-sm">
+                    <div>
+                        <h1 class="text-lg font-extrabold tracking-wider bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">KASIRKU</h1>
+                        <p class="text-[10px] text-blue-200 font-medium">Smart Retail Solution</p>
                     </div>
                 </div>
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="w-full flex items-center justify-center gap-2 py-2 px-3 bg-white/10 hover:bg-red-500/20 hover:text-red-200 border border-white/10 hover:border-red-500/30 rounded-xl text-xs font-semibold text-blue-100 transition-all">
-                        <i class="fas fa-sign-out-alt w-4 h-4"></i>
-                        <span>Keluar</span>
-                    </button>
-                </form>
+
+                <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
+                    <a href="{{ route('dashboard') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 {{ request()->routeIs('dashboard') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10 hover:text-white' }}">
+                        <i class="fas fa-th-large w-5 h-5 {{ request()->routeIs('dashboard') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="{{ route('cashier.index') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 {{ request()->routeIs('cashier.index') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10 hover:text-white' }}">
+                        <i class="fas fa-shopping-cart w-5 h-5 {{ request()->routeIs('cashier.index') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
+                        <span>Kasir POS</span>
+                    </a>
+                    <a href="{{ route('products.index') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 {{ request()->routeIs('products.index') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10 hover:text-white' }}">
+                        <i class="fas fa-box w-5 h-5 {{ request()->routeIs('products.index') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
+                        <span>Produk</span>
+                    </a>
+                    <a href="{{ route('reports.index') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 {{ request()->routeIs('reports.index') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10 hover:text-white' }}">
+                        <i class="fas fa-chart-line w-5 h-5 {{ request()->routeIs('reports.index') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
+                        <span>Laporan</span>
+                    </a>
+                    <a href="{{ route('profile.index') }}" class="group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 {{ request()->routeIs('profile.index') ? 'bg-white text-blue-700 shadow-md font-semibold' : 'text-blue-100 hover:bg-white/10 hover:text-white' }}">
+                        <i class="fas fa-user w-5 h-5 {{ request()->routeIs('profile.index') ? 'text-blue-700' : 'text-blue-200 group-hover:text-white' }}"></i>
+                        <span>Profil</span>
+                    </a>
+                </nav>
+
+                <div class="p-4 border-t border-white/10 bg-indigo-950/20 shrink-0">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-700 font-bold shadow-inner">
+                            {{ strtoupper(substr(Auth::user()->name, 0, 2)) }}
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-semibold truncate">{{ Auth::user()->name }}</p>
+                            <p class="text-[11px] text-blue-200 truncate">{{ Auth::user()->email }}</p>
+                        </div>
+                    </div>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="w-full flex items-center justify-center gap-2 py-2 px-3 bg-white/10 hover:bg-red-500/20 hover:text-red-200 border border-white/10 hover:border-red-500/30 rounded-xl text-xs font-semibold text-blue-100 transition-all">
+                            <i class="fas fa-sign-out-alt w-4 h-4"></i>
+                            <span>Keluar</span>
+                        </button>
+                    </form>
+                </div>
             </div>
         </aside>
 
@@ -226,8 +228,8 @@
             </aside>
         </div>
 
-        <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
-            <header class="hidden md:flex items-center justify-between px-8 h-16 bg-white border-b border-slate-100 shadow-sm shrink-0">
+        <main class="flex-1 flex flex-col min-w-0">
+            <header class="hidden md:flex items-center justify-between px-8 h-16 bg-white border-b border-slate-100 shadow-sm shrink-0 sticky top-0 z-20">
                 <div class="flex items-center gap-4">
                     <h2 class="text-lg font-bold text-slate-800">@yield('page_title', 'Dashboard')</h2>
                 </div>
@@ -248,7 +250,7 @@
                 </div>
             </header>
 
-            <div class="flex-1 overflow-y-auto px-4 py-6 md:p-8">
+            <div class="flex-1 px-4 py-6 md:p-8">
                 @yield('content')
             </div>
         </main>

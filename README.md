@@ -1,44 +1,44 @@
-# Kasirku - Aplikasi Point of Sale (POS) Modern
+# Kasirku - Modern Point of Sale (POS) Application
 
-Kasirku adalah aplikasi web kasir Point of Sale (POS) yang responsif, modern, dan dirancang dengan antarmuka yang bersih serta skema warna biru cerah.
+Kasirku is a responsive, modern Point of Sale (POS) cashier web application, designed with a clean interface and a bright blue color scheme.
 
-## Fitur Utama
-1. **Dashboard Analitik**: Dilengkapi widget KPI (Total Penjualan, Transaksi, Jumlah Produk) dan grafik tren pendapatan bulanan berbasis Chart.js.
-2. **Manajemen Produk (CRUD)**: Kelola data barcode, nama, kategori, stok, dan harga produk. Mendukung pemindaian langsung dari alat scanner barcode ke dalam kolom input form tambah/edit produk.
-3. **Terminal POS Kasir**:
-   - Pencarian produk manual berbasis autocomplete (live search) berdasarkan nama produk atau barcode.
-   - Perekam scanner barcode fisik secara otomatis pada background (HID keyboard emulation).
-   - Kalkulator kembalian instan dengan pilihan uang pas cepat.
-   - Pencetakan nota thermal 58mm/80mm instan menggunakan printer default sistem operasi.
-4. **Laporan Penjualan**: Laporan harian (rincian transaksi/invoice) dan bulanan (tabel akumulasi harian) yang dioptimalkan untuk cetak kertas/PDF.
-5. **Manajemen Profil**: Pengaturan nama lengkap, email, dan penggantian password admin secara aman.
+## Key Features
+1. **Analytical Dashboard**: Equipped with KPI widgets (Total Sales, Transactions, Product Count) and monthly revenue trend charts powered by Chart.js.
+2. **Product Management (CRUD)**: Manage barcode data, names, categories, stock, and product prices. Supports direct scanning from barcode scanner devices into the add/edit product form input fields.
+3. **Cashier POS Terminal**:
+   - Manual product search with autocomplete (live search) based on product name or barcode.
+   - Physical barcode scanner listener running automatically in the background (HID keyboard emulation).
+   - Instant change calculator with quick-cash options.
+   - Instant 58mm/80mm thermal receipt printing using the operating system's default printer.
+4. **Sales Reports**: Daily reports (transaction/invoice details) and monthly reports (daily accumulation table) optimized for paper/PDF printing.
+5. **Profile Management**: Secure settings for full name, email, and admin password changes.
 
 ## Tech Stack
 * **Backend**: Laravel 11 / 13
 * **Frontend**: HTML5, Javascript, Tailwind CSS v4, Alpine.js, Lucide Icons
 * **Database**: SQLite (default) / MySQL
-* **Grafik**: Chart.js
+* **Charts**: Chart.js
 
 
-## Cara Instalasi Lokal
+## Local Installation Guide
 
-1. Kloning repository ini ke lokal.
-2. Buka terminal di direktori proyek dan jalankan:
+1. Clone this repository to your local machine.
+2. Open a terminal in the project directory and run:
    ```bash
    composer install
    npm install
    ```
-3. Salin file `.env.example` menjadi `.env` dan sesuaikan konfigurasinya jika diperlukan.
-4. Jalankan migrasi database dan pengisian data demo awal (seed):
+3. Copy the `.env.example` file to `.env` and adjust the configuration if necessary.
+4. Run database migrations and seed initial demo data:
    ```bash
    php artisan migrate --seed
    ```
-5. Kompilasi aset frontend:
+5. Compile frontend assets:
    ```bash
    npm run build
    ```
-6. Jalankan server lokal:
+6. Run the local development server:
    ```bash
    php artisan serve
    ```
-   Akses aplikasi web di `http://127.0.0.1:8000/login`.
+   Access the web application at `http://127.0.0.1:8000/login`.
